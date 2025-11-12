@@ -1,0 +1,9 @@
+
+# Object Files
+*.o
+
+# Executables
+test_diapbar
+
+# Notes
+notes/
