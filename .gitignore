@@ -5,5 +5,8 @@
 # Executables
 test_diapbar
 
+# Obsidian
+.obsidian/
+
 # Notes
 notes/
