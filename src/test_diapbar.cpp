@@ -26,7 +26,7 @@ void runDiapbarTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
 
 }
 
-void runStringTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
+void runStringTest( Diapbar::Diapbar* testingBar, int* trackerPtr, int goal ) {
   int tmp;
 
   for( int ii = 0; ii <= goal; ii++ ) {
@@ -34,7 +34,7 @@ void runStringTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
 
     *trackerPtr = ii;
     
-    std::cout << '\r' << (std::string) testingBar;
+    std::cout << '\r' << (std::string) *testingBar;
 
   }
   
@@ -54,16 +54,13 @@ int main() {
   testingBar.initialise( barLength );
   testingBar.initialise( &tracker, goal );
 
-  // runDiapbarTest( testingBar, &tracker, goal );
+  runStringTest( &testingBar, &tracker, goal );
 
   // setBarFormat test
   char tmpFormat[4] = {'/', '=', ' ', '/' };
   testingBar.setBarFormat( tmpFormat );
 
-  // runDiapbarTest( testingBar, &tracker, goal );
-
-  // Basic string test
-  runStringTest( testingBar, &tracker, goal );
+  runStringTest( &testingBar, &tracker, goal );
 
 
   return 0;
