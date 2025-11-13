@@ -74,7 +74,20 @@ class Diapbar {
     // Methods
       int getFillLength() const;
       int getLeftLength() const;
-      
+
+  /**
+   * String standard library functionallity
+   */ 
+  #ifdef _GLIBCXX_STRING
+
+  #endif
+
+  /**
+   * String view standard library functionallity
+   */
+  #ifdef _GLIBCXX_STRING_VIEW
+
+  #endif
 };
 
 }
