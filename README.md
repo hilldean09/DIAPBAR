@@ -6,4 +6,4 @@ As of currently, the primary method of usage is to download the source files, in
 
 ## Variety
 The current progress bar classes available are as follows.
-- ```Diapbar```: A basic implementation designed not to necessarily rely on including any libraries.
+- ```Diapbar```: A basic implementation designed not to necessarily rely on including any standard library (though this does notable extend its capabilities and ease of use).
