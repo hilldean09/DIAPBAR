@@ -80,12 +80,22 @@ class Diapbar {
    */ 
   #ifdef _GLIBCXX_STRING
 
+  public:
+    explicit operator std::basic_string() const { return buildStringFromCache(); }
+
+  private:
+    std::string buildStringFromCache() const;
+
   #endif
 
   /**
    * String view standard library functionallity
    */
   #ifdef _GLIBCXX_STRING_VIEW
+
+  public:
+
+  private:
 
   #endif
 };
