@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <string>
+
 #include "diapbar.hpp"
 
 void runDiapbarTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
@@ -24,7 +26,27 @@ void runDiapbarTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
 
 }
 
+void runStringTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
+  int tmp;
+
+  for( int ii = 0; ii <= goal; ii++ ) {
+    tmp = ( (int) ( ii / 0.0015351834 ) ) % 3;
+
+    *trackerPtr = ii;
+    
+    std::cout << '\r' << (std::string) testingBar;
+
+  }
+  
+  std::cout << std::endl;
+
+}
+
 int main() {
+  #ifdef _GLIBCXX_STRING
+  std::cout << "Testing" << std::endl;
+  #endif
+
   int tracker;
   int goal = 2000000;
   int barLength = 10;
@@ -42,6 +64,9 @@ int main() {
   testingBar.setBarFormat( tmpFormat );
 
   runDiapbarTest( testingBar, &tracker, goal );
+
+  // Basic string test
+  runStringTest( testingBar, &tracker, goal );
 
 
   return 0;

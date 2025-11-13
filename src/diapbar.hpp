@@ -79,9 +79,10 @@ class Diapbar {
    * String standard library functionallity
    */ 
   #ifdef _GLIBCXX_STRING
+  #include <string>
 
   public:
-    explicit operator std::basic_string() const { return buildStringFromCache(); }
+    explicit operator std::string() const;
 
   private:
     std::string buildStringFromCache() const;

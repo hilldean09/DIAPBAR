@@ -282,8 +282,15 @@ namespace Diapbar {
 
 /// String standard library functionality
 #ifdef _GLIBCXX_STRING
-  std::basic_string buildStringFromCache() const{
-    return std::basic_string( getStringCache(), getFullLength() );
+
+  Diapbar::operator std::string() const {
+    return buildStringFromCache();
+  }
+
+  std::string Diapbar::buildStringFromCache() const {
+    buildBarToCache();
+
+    return std::string( (const char*) getStringCache(), getFullLength() );
   }
 
 #endif
@@ -292,4 +299,5 @@ namespace Diapbar {
 #ifdef _GLIBCXX_STRING_VIEW
 
 #endif
+
 }
