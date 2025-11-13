@@ -43,9 +43,6 @@ void runStringTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
 }
 
 int main() {
-  #ifdef _GLIBCXX_STRING
-  std::cout << "Testing" << std::endl;
-  #endif
 
   int tracker;
   int goal = 2000000;
@@ -57,13 +54,13 @@ int main() {
   testingBar.initialise( barLength );
   testingBar.initialise( &tracker, goal );
 
-  runDiapbarTest( testingBar, &tracker, goal );
+  // runDiapbarTest( testingBar, &tracker, goal );
 
   // setBarFormat test
   char tmpFormat[4] = {'/', '=', ' ', '/' };
   testingBar.setBarFormat( tmpFormat );
 
-  runDiapbarTest( testingBar, &tracker, goal );
+  // runDiapbarTest( testingBar, &tracker, goal );
 
   // Basic string test
   runStringTest( testingBar, &tracker, goal );

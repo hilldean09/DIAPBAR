@@ -308,6 +308,9 @@ namespace Diapbar {
   /// Destructor
   Diapbar::~Diapbar() {
     // Freeing the string cache
-    delete stringCache_;
+    if( verifyCacheInit() ) {
+      delete stringCache_;
+      stringCache_ = nullptr;
+    }
   }
 } 
