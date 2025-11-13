@@ -199,23 +199,9 @@ namespace Diapbar {
     return output;
   }
 
-  // Mutators //
 
-  /**
-   * Sets the display format of the progress bar.
-   *
-   * @param[in] formatPtr a pointer to a char array of at least length 4.
-   */
-  void Diapbar::setBarFormat( char* formatPtr ) {
-    setBarFormat( Core::BarFormat{ formatPtr[ 0 ],
-                               formatPtr[ 1 ],
-                               formatPtr[ 2 ],
-                               formatPtr[ 3 ] } );
-  }
+  // Accessors //
 
-
-  // Methods //
-  
   /**
   * Returns the number characters that should
   * be used to represent completed progress.
@@ -243,6 +229,21 @@ namespace Diapbar {
   int Diapbar::getLeftLength() const {
     // Dependent on getFillLength() to reduce code reuse
     return (int) getBarLength() - getFillLength();
+  }
+
+
+  // Mutators //
+
+  /**
+   * Sets the display format of the progress bar.
+   *
+   * @param[in] formatPtr a pointer to a char array of at least length 4.
+   */
+  void Diapbar::setBarFormat( char* formatPtr ) {
+    setBarFormat( Core::BarFormat{ formatPtr[ 0 ],
+                               formatPtr[ 1 ],
+                               formatPtr[ 2 ],
+                               formatPtr[ 3 ] } );
   }
 
   /**
@@ -280,24 +281,33 @@ namespace Diapbar {
     return getStringCache();
   }
 
-/// String standard library functionality
-#ifdef _GLIBCXX_STRING
 
-  Diapbar::operator std::string() const {
-    return buildStringFromCache();
-  }
+  // Methods //
 
+  /**
+   * Builds and returns a std::string representation
+   * of the progress bar.
+   *
+   * Relies on the stringCache_ attribute.
+   */
   std::string Diapbar::buildStringFromCache() const {
     buildBarToCache();
 
     return std::string( (const char*) getStringCache(), getFullLength() );
   }
+  
 
-#endif
+  // Operators //
 
-/// String view standard library functionality
-#ifdef _GLIBCXX_STRING_VIEW
+  Diapbar::operator std::string() const {
+    return buildStringFromCache();
+  }
 
-#endif
+  // Misc //
 
-}
+  /// Destructor
+  Diapbar::~Diapbar() {
+    // Freeing the string cache
+    delete stringCache_;
+  }
+} 

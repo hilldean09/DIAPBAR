@@ -3,26 +3,44 @@
 #ifndef DIAPBAR_H
 #define DIAPBAR_H
 
+#include <string>
+#include <iostream>
+
 #include "diapbar_core.hpp"
 
 namespace Diapbar {
 
 class Diapbar {
   public:
-    Diapbar( char* formatPtr = nullptr );
-    Diapbar( int barLength, char* formatPtr = nullptr  );
-    Diapbar( int* trackerPtr, int goal, int barLength, char* formatPtr = nullptr  );
 
-    void initialise( int barLength );
-    void initialise( int* trackerPtr, int goal );
-    void initialise( int* trackerPtr, int goal, int barLength );
+    // Constuctors //
+      Diapbar( char* formatPtr = nullptr );
+      Diapbar( int barLength, char* formatPtr = nullptr  );
+      Diapbar( int* trackerPtr, int goal, int barLength, char* formatPtr = nullptr  );
 
-    char* getStringCache() const { return stringCache_; }
-    int getFullLength() const { return ( barLength_ + 2 ); }
 
-    void setBarFormat( char* formatPtr );
+    // Initialisers //
+      void initialise( int barLength );
+      void initialise( int* trackerPtr, int goal );
+      void initialise( int* trackerPtr, int goal, int barLength );
 
-    char* buildBarToCache() const;
+
+    // Accessors //
+      char* getStringCache() const { return stringCache_; }
+      int getFullLength() const { return ( barLength_ + 2 ); }
+
+
+    // Mutators //
+      void setBarFormat( char* formatPtr );
+
+      char* buildBarToCache() const;
+
+
+    // Operators //
+    explicit operator std::string() const;
+
+    // Misc //
+    ~Diapbar();
 
   private:
     // Attributes
@@ -36,6 +54,7 @@ class Diapbar {
 
       bool isInitialised_;
 
+
     // Initialisers
       void initInvalidAtr();
 
@@ -46,9 +65,11 @@ class Diapbar {
 
       void initBarFormat( char* formatPtr );
 
-      // Verifier
+
+    // Verifiers //
       bool verifyInit() const;
       bool verifyCacheInit() const;
+
 
     // Accessors
       int* getTrackerPtr() const { return trackerPtr_; }
@@ -63,6 +84,10 @@ class Diapbar {
       char getEmptyChar() const { return barFormat_.emptyChar; }
       char getCloseChar() const { return barFormat_.closeChar; }
     
+      int getFillLength() const;
+      int getLeftLength() const;
+
+
     // Mutators
       void setTrackerPtr( int* trackerPtr ) { trackerPtr_ = trackerPtr; }
       void setGoal( int goal ) { goal_ = goal; }
@@ -71,34 +96,10 @@ class Diapbar {
       
       void setBarFormat( Core::BarFormat barFormat ) { barFormat_ = barFormat; }
 
+
     // Methods
-      int getFillLength() const;
-      int getLeftLength() const;
+      std::string buildStringFromCache() const;
 
-  /**
-   * String standard library functionallity
-   */ 
-  #ifdef _GLIBCXX_STRING
-  #include <string>
-
-  public:
-    explicit operator std::string() const;
-
-  private:
-    std::string buildStringFromCache() const;
-
-  #endif
-
-  /**
-   * String view standard library functionallity
-   */
-  #ifdef _GLIBCXX_STRING_VIEW
-
-  public:
-
-  private:
-
-  #endif
 };
 
 }
