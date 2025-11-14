@@ -4,8 +4,10 @@
 #define DIAPBAR_H
 
 #define DIAPBAR_ALLOW_STRING 1
+#define DIAPBAR_ALLOW_STRING_VIEW 1
 
 #include <string>
+#include <string_view>
 #include <iostream>
 
 #include "diapbar_core.hpp"
@@ -113,6 +115,15 @@ class Diapbar {
 
   private:
     std::string buildStringFromCache() const;
+  #endif
+
+  #if( DIAPBAR_ALLOW_STRING_VIEW == 1 )
+  public:
+    explicit operator std::string_view() const;
+
+  private:
+    std::string_view buildStringViewFromCache() const;
+
   #endif
 };
 
