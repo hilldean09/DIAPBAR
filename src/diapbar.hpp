@@ -10,19 +10,20 @@
 
 namespace Diapbar {
 
+template <typename NumT = int>
 class Diapbar {
   public:
 
     // Constuctors //
       Diapbar( char* formatPtr = nullptr );
       Diapbar( int barLength, char* formatPtr = nullptr  );
-      Diapbar( int* trackerPtr, int goal, int barLength, char* formatPtr = nullptr  );
+      Diapbar( NumT* trackerPtr, NumT goal, int barLength, char* formatPtr = nullptr  );
 
 
     // Initialisers //
       void initialise( int barLength );
-      void initialise( int* trackerPtr, int goal );
-      void initialise( int* trackerPtr, int goal, int barLength );
+      void initialise( NumT* trackerPtr, NumT goal );
+      void initialise( NumT* trackerPtr, NumT goal, int barLength );
 
 
     // Accessors //
@@ -45,8 +46,8 @@ class Diapbar {
 
   private:
     // Attributes
-      int* trackerPtr_;
-      int goal_;
+      NumT* trackerPtr_;
+      NumT goal_;
 
       mutable char* stringCache_;
       int barLength_;
@@ -59,8 +60,8 @@ class Diapbar {
     // Initialisers
       void initInvalidAtr();
 
-      void initTrackerPtr( int* trackerPtr );
-      void initGoal( int goal );
+      void initTrackerPtr( NumT* trackerPtr );
+      void initGoal( NumT goal );
       void initBarLength( int barLength );
       void initStringCache();
 
@@ -73,10 +74,10 @@ class Diapbar {
 
 
     // Accessors
-      int* getTrackerPtr() const { return trackerPtr_; }
-      int getTrackerValue() const { return *(trackerPtr_); }
+      NumT* getTrackerPtr() const { return trackerPtr_; }
+      NumT getTrackerValue() const { return *(trackerPtr_); }
 
-      int getGoal() const { return goal_; }
+      NumT getGoal() const { return goal_; }
       
       int getBarLength() const { return barLength_; }
 
@@ -92,8 +93,8 @@ class Diapbar {
 
 
     // Mutators
-      void setTrackerPtr( int* trackerPtr ) { trackerPtr_ = trackerPtr; }
-      void setGoal( int goal ) { goal_ = goal; }
+      void setTrackerPtr( NumT* trackerPtr ) { trackerPtr_ = trackerPtr; }
+      void setGoal( NumT goal ) { goal_ = goal; }
 
       // Set barlength cannot be included trivially due to the cache's dependency on it
       
