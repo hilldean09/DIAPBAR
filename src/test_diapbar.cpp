@@ -20,6 +20,24 @@ void runStringTest( Diapbar::Diapbar<int>* testingBar, int* trackerPtr, int goal
 
 }
 
+template <typename NumT, typename ConvT = std::string>
+int runGeneralTest( Diapbar::Diapbar<NumT> &testingBar, NumT* trackerPtr, NumT goal) {
+  int tmp;
+
+  for( int ii = 0; ii <= goal; ii++ ) {
+    tmp = ( (int) ( ii / 0.0015351834 ) ) % 3;
+
+    *trackerPtr = ii;
+    
+    std::cout << '\r' << (ConvT) testingBar;
+
+  }
+  
+  std::cout << std::endl;
+
+  return tmp;
+}
+
 int main() {
 
   int tracker;
@@ -39,6 +57,9 @@ int main() {
   testingBar.setBarFormat( tmpFormat );
 
   runStringTest( &testingBar, &tracker, goal );
+
+  // string_view test
+  runGeneralTest<int, std::string_view>( testingBar, &tracker, goal );
 
 
   return 0;
