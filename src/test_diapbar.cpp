@@ -4,29 +4,7 @@
 
 #include "diapbar.hpp"
 
-void runDiapbarTest( Diapbar::Diapbar testingBar, int* trackerPtr, int goal ) {
-  int tmp;
-
-  char* stringCache = testingBar.getStringCache();
-  int stringCacheLen = testingBar.getFullLength();
-
-  for( int ii = 0; ii <= goal; ii++ ) {
-    tmp = ( (int) ( ii / 0.0015351834 ) ) % 3;
-
-    *trackerPtr = ii;
-
-    std::cout << '\r';
-
-    testingBar.buildBarToCache();
-    std::cout.write( stringCache, stringCacheLen );
-    
-  }
-
-  std::cout << std::endl;
-
-}
-
-void runStringTest( Diapbar::Diapbar* testingBar, int* trackerPtr, int goal ) {
+void runStringTest( Diapbar::Diapbar<int>* testingBar, int* trackerPtr, int goal ) {
   int tmp;
 
   for( int ii = 0; ii <= goal; ii++ ) {
