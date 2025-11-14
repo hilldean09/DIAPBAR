@@ -323,6 +323,26 @@ namespace Diapbar {
 
   // Methods //
 
+  
+
+  // Operators //
+
+
+  // Misc //
+
+
+  /// Destructor
+  template <typename NumT>
+  Diapbar<NumT>::~Diapbar() {
+    // Freeing the string cache
+    if( verifyCacheInit() ) {
+      delete[] stringCache_;
+      stringCache_ = nullptr;
+    }
+  }
+
+  // <string> functionallity //
+  #if( DIAPBAR_ALLOW_STRING == 1 )
   /**
    * Builds and returns a std::string representation
    * of the progress bar.
@@ -335,26 +355,13 @@ namespace Diapbar {
 
     return std::string( (const char*) getStringCache(), getFullLength() );
   }
-  
-
-  // Operators //
 
   template <typename NumT>
   Diapbar<NumT>::operator std::string() const {
     return buildStringFromCache();
   }
 
-  // Misc //
-
-  /// Destructor
-  template <typename NumT>
-  Diapbar<NumT>::~Diapbar() {
-    // Freeing the string cache
-    if( verifyCacheInit() ) {
-      delete[] stringCache_;
-      stringCache_ = nullptr;
-    }
-  }
+  #endif
 } 
 
 #endif

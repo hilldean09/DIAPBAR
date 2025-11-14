@@ -3,6 +3,8 @@
 #ifndef DIAPBAR_H
 #define DIAPBAR_H
 
+#define DIAPBAR_ALLOW_STRING 1
+
 #include <string>
 #include <iostream>
 
@@ -38,11 +40,11 @@ class Diapbar {
 
 
     // Operators //
-      explicit operator std::string() const;
 
 
     // Misc //
       ~Diapbar();
+
 
   private:
     // Attributes
@@ -102,8 +104,16 @@ class Diapbar {
 
 
     // Methods
-      std::string buildStringFromCache() const;
 
+
+  // <string> functionallity //
+  #if( DIAPBAR_ALLOW_STRING == 1 )
+  public:
+    explicit operator std::string() const;
+
+  private:
+    std::string buildStringFromCache() const;
+  #endif
 };
 
 }
