@@ -1,7 +1,9 @@
 // Diapbar class file
 
-#include "diapbar.hpp"
+#ifndef DIAPBAR_CPP
+#define DIAPBAR_CPP
 #include "diapbar_core.hpp"
+#include <string>
 
 namespace Diapbar {
 
@@ -354,3 +356,5 @@ namespace Diapbar {
     }
   }
 } 
+
+#endif

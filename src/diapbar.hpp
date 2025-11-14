@@ -108,4 +108,6 @@ class Diapbar {
 
 }
 
+#include "diapbar.cpp"
+
 #endif 
