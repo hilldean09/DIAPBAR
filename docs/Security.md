@@ -1,3 +1,4 @@
+# Security
 Given the simplistic nature of a progress bar in the grand scheme, no extreme measures are required to defend against exploits and the like. The primary threat model considered in DIAPBAR is comprised dependencies. The primary defensive measure is minimising the necessity, number, and obfuscation of included dependencies, even those of the C++ standard library.
 
 While placing a degree of distrust in the C++ standard library is possibly overkill, to maximise the applicability of DIAPBAR in use cases where the aforementioned threat model is considered non-negligible, it is upheld.
