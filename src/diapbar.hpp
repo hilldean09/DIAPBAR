@@ -27,7 +27,7 @@ class Diapbar {
 
     // Accessors //
       char* getStringCache() const { return stringCache_; }
-      int getFullLength() const { return ( barLength_ + 2 ); }
+      int getDisplayLength() const;
 
 
     // Mutators //
@@ -37,10 +37,11 @@ class Diapbar {
 
 
     // Operators //
-    explicit operator std::string() const;
+      explicit operator std::string() const;
+
 
     // Misc //
-    ~Diapbar();
+      ~Diapbar();
 
   private:
     // Attributes
@@ -86,6 +87,8 @@ class Diapbar {
     
       int getFillLength() const;
       int getLeftLength() const;
+
+      int getFullLength() const;
 
 
     // Mutators

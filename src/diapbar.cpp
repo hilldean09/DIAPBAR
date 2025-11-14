@@ -231,6 +231,23 @@ namespace Diapbar {
     return (int) getBarLength() - getFillLength();
   }
 
+  /**
+   * Returns the number of characters required
+   * to display the bar.
+   */
+  int Diapbar::getDisplayLength() const {
+    return getFullLength();
+  }
+
+  /**
+   * Calculates the nummber of characters required
+   * to fully display the bar.
+   */
+  int Diapbar::getFullLength() const {
+    // +2 for opening and closing characters
+    return getBarLength() + 2;
+  }
+
 
   // Mutators //
 
