@@ -61,6 +61,9 @@ int main() {
   // string_view test
   runGeneralTest<int, std::string_view>( testingBar, &tracker, goal );
 
+  // Copy constructor test 
+  Diapbar::Diapbar copiedBar = testingBar;
+  runGeneralTest<int>( copiedBar, &tracker, goal );
 
   return 0;
 }

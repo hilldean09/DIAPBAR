@@ -74,7 +74,7 @@ namespace Diapbar {
       initGoal( other.goal_ );
 
       initBarLength( other.barLength_ );
-      initStringCache( other.getStringCache(), other.getCacheLength() );
+      initStringCache( other.getStringCache() );
 
       setBarFormatWithFormat( other.barFormat_ );
 
