@@ -18,7 +18,7 @@ namespace Diapbar {
   Diapbar<NumT>::Diapbar() {
     initInvalidAtr();
 
-    void initBarFormat();
+    initBarFormat();
 
     isInitialised_ = verifyInit();
   }
@@ -36,7 +36,7 @@ namespace Diapbar {
     initBarLength( barLength );
     initStringCache();
 
-    void initBarFormat();
+    initBarFormat();
 
     isInitialised_ = verifyInit();
   }
@@ -59,7 +59,7 @@ namespace Diapbar {
     initBarLength( barLength );
     initStringCache();
 
-    void initBarFormat();
+    initBarFormat();
 
     isInitialised_ = verifyInit();
   }
