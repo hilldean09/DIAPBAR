@@ -64,6 +64,27 @@ namespace Diapbar {
     isInitialised_ = verifyInit();
   }
 
+  template <typename NumT>
+  Diapbar<NumT>::Diapbar( const Diapbar<NumT> &other ) {
+    if( other.verifyInit() ) {
+
+      initInvalidAtr();
+
+      initTrackerPtr( other.trackerPtr_ );
+      initGoal( other.goal_ );
+
+      initBarLength( other.barLength_ );
+      initStringCache( other.getStringCache(), other.getCacheLength() );
+
+      setBarFormatWithFormat( other.barFormat_ );
+
+      isInitialised_ = verifyInit();
+      
+
+    }
+
+  }
+
 
   // Initialisers //
   
@@ -166,6 +187,22 @@ namespace Diapbar {
     }
   }
 
+  /**
+   * Initialise the string cache ffrom another
+   * string cache.
+   */
+  template <typename NumT>
+  void Diapbar<NumT>::initStringCache( char* refStringCache ) {
+    initStringCache();
+
+    int fullLength = getFullLength();
+    char* stringCache = getStringCache();
+
+    for( int ii = 0; ii < fullLength; ii++ ) {
+      stringCache[ ii ] = refStringCache[ ii ];
+    }
+
+  }
   /// Initialise barFormat to default 
   template <typename NumT>
   void Diapbar<NumT>::initBarFormat() {
@@ -251,6 +288,16 @@ namespace Diapbar {
   int Diapbar<NumT>::getDisplayLength() const {
     return getFullLength();
   }
+
+  /**
+   * Returns the number of characters required
+   * to generate the bar.
+   */
+  template <typename NumT>
+  int Diapbar<NumT>::getCacheLength() const {
+    return getFullLength();
+  }
+
 
   /**
    * Calculates the nummber of characters required

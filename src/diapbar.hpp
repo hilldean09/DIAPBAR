@@ -23,6 +23,8 @@ class Diapbar {
       Diapbar( int barLength );
       Diapbar( NumT* trackerPtr, NumT goal, int barLength );
 
+      Diapbar( const Diapbar &other );
+
 
     // Initialisers //
       void initialise( int barLength );
@@ -32,7 +34,9 @@ class Diapbar {
 
     // Accessors //
       char* getStringCache() const { return stringCache_; }
+
       int getDisplayLength() const;
+      int getCacheLength() const;
 
 
     // Mutators //
@@ -68,6 +72,7 @@ class Diapbar {
       void initGoal( NumT goal );
       void initBarLength( int barLength );
       void initStringCache();
+      void initStringCache( char* refStringCache );
 
       void initBarFormat();
 
@@ -92,7 +97,6 @@ class Diapbar {
     
       int getFillLength() const;
       int getLeftLength() const;
-
       int getFullLength() const;
 
 
