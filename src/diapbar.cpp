@@ -347,6 +347,11 @@ namespace Diapbar {
     return buildStringFromCache();
   }
 
+  template <typename NumT>
+  void Diapbar<NumT>::setBarFormat( std::string format ) {
+    setBarFormatWithIterable( format );
+  }
+
   /**
    * Builds and returns a std::string representation
    * of the progress bar.
@@ -367,6 +372,11 @@ namespace Diapbar {
   template <typename NumT>
   Diapbar<NumT>::operator std::string_view() const{
     return buildStringViewFromCache();
+  }
+
+  template <typename NumT>
+  void Diapbar<NumT>::setBarFormat( std::string_view format ) {
+    setBarFormatWithIterable( format );
   }
 
   template <typename NumT>

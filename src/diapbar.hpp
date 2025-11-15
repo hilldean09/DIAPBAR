@@ -113,6 +113,7 @@ class Diapbar {
   #if( DIAPBAR_ALLOW_STRING == 1 )
   public:
     explicit operator std::string() const;
+    void barFormat( std::string format );
 
   private:
     std::string buildStringFromCache() const;
@@ -124,6 +125,7 @@ class Diapbar {
 
   private:
     std::string_view buildStringViewFromCache() const;
+    void barFormat( std::string_view format );
 
   #endif
 };
