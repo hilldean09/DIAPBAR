@@ -19,9 +19,9 @@ class Diapbar {
   public:
 
     // Constuctors //
-      Diapbar( char* formatPtr = nullptr );
-      Diapbar( int barLength, char* formatPtr = nullptr  );
-      Diapbar( NumT* trackerPtr, NumT goal, int barLength, char* formatPtr = nullptr  );
+      Diapbar();
+      Diapbar( int barLength );
+      Diapbar( NumT* trackerPtr, NumT goal, int barLength );
 
 
     // Initialisers //
@@ -69,7 +69,7 @@ class Diapbar {
       void initBarLength( int barLength );
       void initStringCache();
 
-      void initBarFormat( char* formatPtr );
+      void initBarFormat();
 
 
     // Verifiers //
@@ -102,8 +102,9 @@ class Diapbar {
 
       // Set barlength cannot be included trivially due to the cache's dependency on it
       
-      void setBarFormat( Core::BarFormat barFormat ) { barFormat_ = barFormat; }
-
+      void setBarFormatWithFormat( Core::BarFormat barFormat ) { barFormat_ = barFormat; }
+      template <typename ItrT> void setBarFormatWithIterable( ItrT format );
+      
 
     // Methods
 

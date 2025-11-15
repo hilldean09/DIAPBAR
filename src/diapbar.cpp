@@ -15,10 +15,10 @@ namespace Diapbar {
    * @param[in] formatPtr a pointer to a char array of at least length 4. Defaults to nullptr.
    */
   template <typename NumT>
-  Diapbar<NumT>::Diapbar( char* formatPtr ) {
+  Diapbar<NumT>::Diapbar() {
     initInvalidAtr();
 
-    initBarFormat( formatPtr );
+    void initBarFormat();
 
     isInitialised_ = verifyInit();
   }
@@ -30,13 +30,13 @@ namespace Diapbar {
    * @param[in] formatPtr a pointer to a char array of at least length 4. Defaults to nullptr.
    */
   template <typename NumT>
-  Diapbar<NumT>::Diapbar( int barLength, char* formatPtr ) {
+  Diapbar<NumT>::Diapbar( int barLength ) {
     initInvalidAtr();
 
     initBarLength( barLength );
     initStringCache();
 
-    initBarFormat( formatPtr );
+    void initBarFormat();
 
     isInitialised_ = verifyInit();
   }
@@ -50,7 +50,7 @@ namespace Diapbar {
    * @param[in] formatPtr a pointer to a char array of at least length 4. Defaults to nullptr.
    */
   template <typename NumT>
-  Diapbar<NumT>::Diapbar( NumT* trackerPtr, NumT goal, int barLength, char* formatPtr ) {
+  Diapbar<NumT>::Diapbar( NumT* trackerPtr, NumT goal, int barLength ) {
     initInvalidAtr();
 
     initTrackerPtr( trackerPtr );
@@ -59,7 +59,7 @@ namespace Diapbar {
     initBarLength( barLength );
     initStringCache();
 
-    initBarFormat( formatPtr );
+    void initBarFormat();
 
     isInitialised_ = verifyInit();
   }
@@ -166,16 +166,10 @@ namespace Diapbar {
     }
   }
 
-  /// Initialise barFormat to default or input
+  /// Initialise barFormat to default 
   template <typename NumT>
-  void Diapbar<NumT>::initBarFormat( char* formatPtr ) {
-    if( formatPtr == nullptr ) {
-      setBarFormat( Core::DEFAULT_BAR_FORMAT );
-    }
-
-    else {
-      setBarFormat( formatPtr );
-    }
+  void Diapbar<NumT>::initBarFormat() {
+    setBarFormatWithFormat( Core::DEFAULT_BAR_FORMAT );
   }
 
 
@@ -278,10 +272,15 @@ namespace Diapbar {
    */
   template <typename NumT>
   void Diapbar<NumT>::setBarFormat( char* formatPtr ) {
-    setBarFormat( Core::BarFormat{ formatPtr[ 0 ],
-                               formatPtr[ 1 ],
-                               formatPtr[ 2 ],
-                               formatPtr[ 3 ] } );
+    setBarFormatWithIterable( formatPtr );
+  }
+
+  template <typename NumT, typename typename ItrT>
+  void Diapbar<NumT>::setBarFormatWithIterable( Itr format ) {
+    setBarFormatWithFormat( Core::BarFormat{ format[ 0 ],
+                                             format[ 1 ],
+                                             format[ 2 ],
+                                             format[ 3 ] } );
   }
 
   /**
@@ -323,7 +322,6 @@ namespace Diapbar {
 
   // Methods //
 
-  
 
   // Operators //
 
