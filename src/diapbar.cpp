@@ -275,8 +275,8 @@ namespace Diapbar {
     setBarFormatWithIterable( formatPtr );
   }
 
-  template <typename NumT, typename typename ItrT>
-  void Diapbar<NumT>::setBarFormatWithIterable( Itr format ) {
+  template <typename NumT> template <typename ItrT>
+  void Diapbar<NumT>::setBarFormatWithIterable( ItrT format ) {
     setBarFormatWithFormat( Core::BarFormat{ format[ 0 ],
                                              format[ 1 ],
                                              format[ 2 ],
