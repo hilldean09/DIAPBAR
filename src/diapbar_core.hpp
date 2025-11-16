@@ -46,5 +46,4 @@ namespace Diapbar::Core {
   };
 }
 
-}
 #endif
