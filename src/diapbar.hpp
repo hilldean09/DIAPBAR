@@ -15,7 +15,7 @@
 namespace Diapbar {
 
 template <typename NumT = int>
-class Diapbar {
+class Diapbar : public Core::Diapbar_Base<NumT> {
   public:
 
     // Constuctors //
