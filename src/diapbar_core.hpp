@@ -3,6 +3,9 @@
 #ifndef DIAPBAR_CORE_H
 #define DIAPBAR_CORE_H
 
+#include <string>
+#include <string_view>
+
 namespace Diapbar::Core {
 
   /**
@@ -41,6 +44,24 @@ namespace Diapbar::Core {
       virtual void setBarFormat( char* formatPtr ) = 0;
 
       virtual char* buildBarToCache() const = 0;
+
+
+    // <string> functionallity //
+    #if( DIAPBAR_ALLOW_STRING == 1 )
+    public:
+      virtual explicit operator std::string() const = 0;
+      virtual void setBarFormat( std::string format ) = 0;
+
+    #endif
+
+
+    // <string_view> functionallity //
+    #if( DIAPBAR_ALLOW_STRING_VIEW == 1 )
+    public:
+      virtual explicit operator std::string_view() const = 0;
+      virtual void setBarFormat( std::string_view format ) = 0;
+
+    #endif
 
 
   };
